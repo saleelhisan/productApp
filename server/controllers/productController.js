@@ -28,8 +28,8 @@ export const viewProduct = async (req, res) => {
 
 
   try {
-    const products = await Product.find(); // find all products in the database
-    res.json(products); // send the products as a JSON response
+    const products = await Product.find(); 
+    res.json(products); 
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -37,16 +37,16 @@ export const viewProduct = async (req, res) => {
 
 
 export const deleteProduct = async (req, res) => {
-  const { id } = req.params; // Get the ID of the product to be deleted from the request parameters
+  const { id } = req.params; 
   try {
-    const { deletedCount } = await Product.deleteOne({ _id: id }); // Find and delete the product with the given ID
-    if (!deletedCount) { // If the product was not found, return an error response
+    const { deletedCount } = await Product.deleteOne({ _id: id }); 
+    if (!deletedCount) { 
       return res.status(404).json({ message: "Product not found" });
     }
-    res.json({ message: "Product deleted successfully" }); // Return a success response
+    res.json({ message: "Product deleted successfully" }); 
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Something went wrong" }); // Return an error response if something goes wrong
+    res.status(500).json({ message: "Something went wrong" }); 
   }
 };
 
